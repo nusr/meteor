@@ -1,0 +1,17 @@
+{
+  "name": "meteor",
+  "private": true,
+  "scripts": {
+    "start": "MONGO_URL=mongodb://root:Metadatafa568@dds-bp1afbf47fc7e8e41140-pub.mongodb.rds.aliyuncs.com:3717/meteor?authSource=admin meteor  run --port 9090"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.3",
+    "meteor-node-stubs": "^0.4.1"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.js",
+      "server": "server/index.js"
+    }
+  }
+}
