@@ -4,7 +4,7 @@ import DDP from 'ddp.js';
  * meteor 连接选项
  */
 const meteorOptions = {
-    endpoint: 'ws://localhost:9090/websocket', // react native 中 localhost 要改成本地IP才可以，否则连接失败
+    endpoint: 'ws://localhost:9090/websocket',
     SocketConstructor: WebSocket,
     reconnectInterval: 10000,
     autoConnect: true,
@@ -39,8 +39,8 @@ export function disconnectSocket() {
 
 // mongo 集合名
 export const COLLECTIONS_LIST = {
-    todo: {
-        collectionName: 'todo',
-        methodName: 'getAllTodo',
+    info: {
+        collectionName: 'info',
+        methodName: 'getAllInfo',
     },
 };

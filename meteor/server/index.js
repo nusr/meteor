@@ -1,24 +1,56 @@
-import { Meteor } from 'meteor/meteor'; // eslint-disable-line
+import {Meteor} from 'meteor/meteor'; // eslint-disable-line
+import {onPageLoad} from 'meteor/server-render'; // eslint-disable-line
 import todo from './todo';
 import info from './info';
-import { onPageLoad } from 'meteor/server-render'; // eslint-disable-line
+
+function uuidV4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
 
 Meteor.startup(() => {
   console.log(`\n meteor connect mongoDB url：${process.env.MONGO_URL}`);
-  if (todo.find().count() === 0) {
-    const list = [
+  if (info.find().count() === 0) {
+    const mockList = [
       {
-        name: 'test',
+        name: '王语嫣',
+        male: false
+      }, {
+        name: '黄蓉',
+        male: false,
       },
       {
-        name: 'todo',
+        name: '萧峰',
+        male: true
+      }, {
+        name: '郭靖',
+        male: true,
       },
-    ];
-    for (let i = 0; i < list.length; i += 1) {
-      todo.insert({
+      {
+        name: '杨过',
+        male: true
+      }, {
+        name: '公孙绿萼',
+        male: false,
+      },
+      {
+        name: '阿朱',
+        male: false
+      }, {
+        name: '郭破虏',
+        male: true,
+      }
+    ]
+    for (let item of mockList) {
+      let id = uuidV4()
+      info.insert({
         createTime: new Date(),
-        id: i + 1,
-        ...list[i],
+        id,
+        desc: item.male ? '帅到没女朋友' : '美到没男朋友',
+        ...item
       });
     }
   }
@@ -41,11 +73,13 @@ const todoList = todo
     }
   )
   .fetch();
-
+/**
+ * meteor 服务端渲染,测试 meteor 连接
+ */
 onPageLoad(dom => {
   const infoHtml = infoList
     .map(item => {
-      return `<li>${item.name || item.id}</li>`;
+      return `<li>${item.name + ' : ' + item.desc}</li>`;
     })
     .join('');
 

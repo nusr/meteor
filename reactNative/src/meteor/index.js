@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {notification} from 'antd';
+import {Alert} from 'react-native'
 import {getDDP, disconnectSocket} from './service';
 
 export {COLLECTIONS_LIST, getDDP, disconnectSocket} from './service'
+
 
 const PUBLIC_EVENTS = [
   // 'ready',
@@ -27,11 +28,10 @@ export default (WrapperComponent, {collectionName, methodName}) => {
 
     componentDidMount() {
       if (!this.ddp) {
-        notification.error({
-          message: '数据推送连接错误',
-          description: '数据推送未连接上服务器！',
-          duration: 10,
-        });
+        Alert.alert(
+          '连接错误',
+          '数据推送未连接上服务器!'
+        )
         return;
       }
       // 添加订阅
@@ -89,11 +89,11 @@ export default (WrapperComponent, {collectionName, methodName}) => {
         });
       });
       ddp.on('error', response => {
-        notification.error({
-          message: '服务器推送数据错误',
-          description: `错误消息：${response}`,
-          duration: 10,
-        });
+        Alert.alert(
+          '服务器推送数据错误',
+          `错误消息：${response}`
+        )
+
       });
       ddp.on('ready', () => {
         console.log('ready')
