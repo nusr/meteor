@@ -37,7 +37,7 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
-
+third-party
 # BUCK
 buck-out/
 \.buckd/

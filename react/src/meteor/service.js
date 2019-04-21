@@ -4,7 +4,7 @@ import DDP from 'ddp.js';
  * meteor 连接选项
  */
 const meteorOptions = {
-    endpoint: 'ws://localhost:9090/websocket',
+    endpoint: 'ws://127.0.0.1:9090/websocket',
     SocketConstructor: WebSocket,
     reconnectInterval: 10000,
     autoConnect: true,

@@ -1,33 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {List, Skeleton} from 'antd';
 import './App.css';
-import MeteorWrapper, {COLLECTIONS_LIST} from './meteor'
+import MeteorWrapper from './meteor'
+import { COLLECTIONS_LIST} from './meteor/service'
 
-class App extends Component {
+function App(props) {
+  const {meteorList = [], initOver} = props
+  return (
+    <div className="App">
+      <List
+        itemLayout="horizontal"
+        dataSource={meteorList}
+        renderItem={item => (
+          <List.Item key={item.id}>
+            <Skeleton loading={!initOver} active avatar>
+              <List.Item.Meta
+                title={item.name}
+                description={item.desc}
+              />
+            </Skeleton>
 
-  render() {
-    console.log(this.props)
-    const {meteorList = [], initOver} = this.props
-    return (
-      <div className="App">
-        <List
-          itemLayout="horizontal"
-          dataSource={meteorList}
-          renderItem={item => (
-            <List.Item key={item.id}>
-              <Skeleton loading={!initOver} active avatar>
-                <List.Item.Meta
-                  title={item.name}
-                  description={item.desc}
-                />
-              </Skeleton>
-
-            </List.Item>
-          )}
-        />
-      </div>
-    );
-  }
+          </List.Item>
+        )}
+      />
+    </div>
+  );
 }
 
 

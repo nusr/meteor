@@ -2,11 +2,12 @@ import {Meteor} from 'meteor/meteor'; // eslint-disable-line
 import {COLLECTIONS_LIST, PAGINATION_CONFIG} from './config';
 
 const Todo = new Meteor.Collection(COLLECTIONS_LIST.todo);
+// 发布数据，前端就可以调用
 Meteor.publish(COLLECTIONS_LIST.todo, () => {
     return Todo.find();
 });
 /**
- * front end can call it
+ * 定义前端调用的方法
  */
 Meteor.methods({
     /**

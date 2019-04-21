@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Alert} from 'react-native'
-import {getDDP, disconnectSocket} from './service';
 
-export {COLLECTIONS_LIST, getDDP, disconnectSocket} from './service'
+import {getDDP, disconnectSocket} from './service'
 
 
 const PUBLIC_EVENTS = [

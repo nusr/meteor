@@ -1,27 +1,23 @@
-/**
- * @format
- */
-
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View, FlatList} from 'react-native';
-import MeteorWrapper, {COLLECTIONS_LIST} from './meteor'
+import MeteorWrapper from './meteor'
+import {COLLECTIONS_LIST} from './meteor/service'
 
-class App extends Component {
-  render() {
-    const {meteorList = [], initOver} = this.props
-    return (
-      <View style={styles.container}>
-        <FlatList
-          data={meteorList}
-          renderItem={({item}) => (
-            <View style={styles.item}>
-              <View style={styles.name}><Text>{item.name}</Text></View>
-              <View style={styles.desc}><Text>{item.desc}</Text></View>
-            </View>)}
-        />
-      </View>
-    );
-  }
+function App(props) {
+  const {meteorList = [], initOver} = props
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={meteorList}
+        renderItem={({item}) => (
+          <View style={styles.item}>
+            <View style={styles.name}><Text>{item.name}</Text></View>
+            <View style={styles.desc}><Text>{item.desc}</Text></View>
+          </View>)}
+      />
+    </View>
+  );
+
 }
 
 export default MeteorWrapper(App, COLLECTIONS_LIST.info)

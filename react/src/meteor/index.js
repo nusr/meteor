@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {notification} from 'antd';
-import {getDDP, disconnectSocket} from './service';
-
-export {COLLECTIONS_LIST, getDDP, disconnectSocket} from './service'
+import {getDDP, disconnectSocket} from './service'
 
 const PUBLIC_EVENTS = [
   // 'ready',

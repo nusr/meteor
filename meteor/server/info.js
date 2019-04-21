@@ -1,24 +1,24 @@
 import {Meteor} from 'meteor/meteor'; // eslint-disable-line
 import {COLLECTIONS_LIST, PAGINATION_CONFIG} from './config';
-
+// mongodb info collection
 const Info = new Meteor.Collection(COLLECTIONS_LIST.info);
+// 发布数据，前端就可以调用
 Meteor.publish(COLLECTIONS_LIST.info, () => {
   return Info.find();
 });
 /**
- * front end can call it
+ * 定义前端调用的方法
  */
 Meteor.methods({
-  /**
-   *  前端传递的数组参数，meteor 接收到的是列表
-   * @param {前端传递的数组参数} param1
-   * @param {前端传递的数组参数} param2
-   * @returns {any}
-   */
-  getAllInfo(param1, param2) {
-    console.log(param1, param2)
+  getAllInfo() {
     return Info.find().fetch();
   },
+  /**
+   * 分页请求
+   * @param {number 当前页面 从 1 开始} currentPage
+   * @param {number 单次请求总条数} pageSize
+   * @returns {{total: any, data: any}|null}
+   */
   getPageInfo(currentPage = 1, pageSize = PAGINATION_CONFIG.pageSize) {
     if (page < 1) {
       return null;
